@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973658767547",
+    "project_id": "topicos202402",
+    "storage_bucket": "topicos202402.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973658767547:android:4d87635c37d13482dca99e",
+        "android_client_info": {
+          "package_name": "com.example.topicos202402"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvkDmrFDUF0pF1uxpEp9234varJrx5cjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
