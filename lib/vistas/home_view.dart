@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:topicos202402/widgets/credit_card.dart';
 import 'package:topicos202402/widgets/top_header.dart';
+import 'package:topicos202402/widgets/transacrtion_widget.dart';
 import 'package:topicos202402/widgets/user_avatar.dart';
 
 class HomeView extends StatelessWidget {
@@ -26,6 +27,36 @@ class HomeView extends StatelessWidget {
     'Sofia',
     'Laura',
     'Fernando',
+  ];
+
+  final List<double> amounts = [
+    -325,
+    -100,
+    400,
+    -200,
+    343,
+    -905,
+  ];
+
+  final List<String> labels = [
+    'Transfer to Siti',
+    'Coffee',
+    'Supermarket',
+    'Nomina',
+  ];
+
+  final List<String> dates = [
+    'Today, 08:23 PM',
+    'Yesterday, 02:51 PM',
+    'Yesterday, 10:23 AM',
+    'Today, 11:23 AM',
+    'Now, 08:23 AM',
+  ];
+
+  final List<int> typesTransaction = [
+    1,
+    2,
+    3,
   ];
 
   @override
@@ -118,6 +149,43 @@ class HomeView extends StatelessWidget {
                   },
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              child: Row(
+                children: [
+                  const Text(
+                    'Transactions',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('See All'),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Column(
+              children: List.generate(4, (index) {
+                return TransactionWidget(
+                  amount: amounts[index % amounts.length],
+                  label: labels[index % labels.length],
+                  date: dates[index % dates.length],
+                  type: typesTransaction[index % typesTransaction.length],
+                );
+              }),
             ),
           ],
         ),
