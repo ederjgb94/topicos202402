@@ -31,16 +31,20 @@ class TransactionWidget extends StatelessWidget {
         ),
       ),
       trailing: Text(
-        '\$${amount.toStringAsFixed(2)}',
+        '${amount >= 0 ? '+' : '-'}\$${amount.abs().toStringAsFixed(2)}',
         style: TextStyle(
           fontSize: 16,
-          color: type == 1 ? Colors.green : Colors.red,
+          color: amount >= 0
+              ? const Color.fromARGB(255, 96, 169, 88)
+              : const Color(0xffEF6963),
+          fontWeight: FontWeight.w700,
         ),
       ),
       leading: CircleAvatar(
-        backgroundColor: type == 1 ? Colors.green : Colors.red,
+        backgroundColor:
+            type == 1 ? const Color(0xffBE9BC7) : const Color(0xffF9AD83),
         child: Icon(
-          type == 1 ? Icons.arrow_downward : Icons.arrow_upward,
+          type == 2 ? Icons.coffee : Icons.wallet,
           color: Colors.white,
         ),
       ),

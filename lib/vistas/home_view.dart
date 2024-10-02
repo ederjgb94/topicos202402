@@ -4,9 +4,17 @@ import 'package:topicos202402/widgets/credit_card.dart';
 import 'package:topicos202402/widgets/top_header.dart';
 import 'package:topicos202402/widgets/transacrtion_widget.dart';
 import 'package:topicos202402/widgets/user_avatar.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int _bottomNavIndex = 0;
 
   final List<double> balances = [
     41000,
@@ -189,6 +197,55 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        itemCount: 4,
+        tabBuilder: (int index, bool isActive) {
+          final IconData icon;
+          switch (index) {
+            case 0:
+              icon = Icons.home;
+              break;
+            case 1:
+              icon = Icons.balance;
+              break;
+            case 2:
+              icon = Icons.wallet;
+              break;
+            default:
+              icon = Icons.person;
+          }
+
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: isActive
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.black,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                index == 0 ? 'Home' : 'Profile',
+                style: TextStyle(
+                  color: isActive
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.black,
+                ),
+              ),
+            ],
+          );
+        },
+
+        gapLocation: GapLocation.none,
+        activeIndex: _bottomNavIndex,
+        onTap: (index) => setState(() => _bottomNavIndex = index),
+        //other params
       ),
     );
   }
