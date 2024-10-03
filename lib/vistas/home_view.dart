@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:solar_icons/solar_icons.dart';
 import 'package:topicos202402/widgets/credit_card.dart';
 import 'package:topicos202402/widgets/top_header.dart';
 import 'package:topicos202402/widgets/transacrtion_widget.dart';
@@ -199,46 +200,57 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        height: 80,
         itemCount: 4,
+        splashColor: Colors.black,
         tabBuilder: (int index, bool isActive) {
           final IconData icon;
+          final String label;
           switch (index) {
             case 0:
-              icon = Icons.home;
+              icon = isActive ? SolarIconsBold.home : SolarIconsOutline.home;
+              label = 'Home';
               break;
             case 1:
-              icon = Icons.balance;
+              icon =
+                  isActive ? SolarIconsBold.graphUp : SolarIconsOutline.graphUp;
+              label = 'Statistics';
               break;
             case 2:
-              icon = Icons.wallet;
+              icon =
+                  isActive ? SolarIconsBold.wallet : SolarIconsOutline.wallet;
+              label = 'Wallet';
               break;
             default:
-              icon = Icons.person;
+              icon = isActive
+                  ? Icons.account_circle
+                  : SolarIconsOutline.userCircle;
+              label = 'Profile';
           }
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 24,
-                color: isActive
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.black,
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
-                index == 0 ? 'Home' : 'Profile',
-                style: TextStyle(
-                  color: isActive
-                      ? Theme.of(context).colorScheme.primary
-                      : Colors.black,
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 24,
+                  color: isActive ? Colors.black : Colors.grey.shade600,
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: isActive ? Colors.black : Colors.grey.shade600,
+                    fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
           );
         },
 
